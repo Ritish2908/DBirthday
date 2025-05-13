@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Starry Night</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+  
+    .falling-stars-section {
+      position: relative;
+      height: 100vh;
+      background: linear-gradient(to bottom, #000014, #000033);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      z-index: 1;
+    }
+  
+    #star-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Make sure canvas stays in the background */
+    }
+  
+    .stars-heading {
+      z-index: 2;
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px white;
+      position: relative;
+    }
+  
+    #star-music-btn {
+      z-index: 2;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid #fff;
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      margin-top: 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+      position: relative;
+    }
+  
+    #star-music-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  padding: 10px 20px;
+  background-color: #ffffff88;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  backdrop-filter: blur(5px);
+}
+
+.back-btn:hover {
+  background-color: #fff;
+  transform: scale(1.05);
+}
+
+  </style>
+  
+</head>
+<body>
+  <section class="falling-stars-section">
+    <h2 class="stars-heading">🌠 Make a Wish Under the Stars 🌠</h2>
+    <canvas id="star-canvas"></canvas>
+    <audio id="star-music" src="sky.mp3" loop></audio>
+    <button id="star-music-btn">🎵 Play Star Music</button>
+  </section>
+  <button class="back-btn" onclick="window.location.href='index.html'">
+    🔙 Back
+  </button>
+  
+
+  <script>
+    const starCanvas = document.getElementById("star-canvas");
+    const ctxStar = starCanvas.getContext("2d");
+
+    function resizeStarCanvas() {
+      starCanvas.width = window.innerWidth;
+      starCanvas.height = window.innerHeight;
+    }
+    resizeStarCanvas();
+    window.addEventListener("resize", resizeStarCanvas);
+
+    const stars = [];
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        length: Math.random() * 2,
+        speed: Math.random() * 2 + 0.5
+      });
+    }
+
+    function drawStars() {
+      ctxStar.clearRect(0, 0, starCanvas.width, starCanvas.height);
+      ctxStar.strokeStyle = "white";
+      ctxStar.lineWidth = 1;
+      stars.forEach(star => {
+        ctxStar.beginPath();
+        ctxStar.moveTo(star.x, star.y);
+        ctxStar.lineTo(star.x - star.length * 4, star.y + star.length * 4);
+        ctxStar.stroke();
+
+        star.x -= star.speed;
+        star.y += star.speed;
+
+        if (star.y > starCanvas.height || star.x < 0) {
+          star.x = Math.random() * window.innerWidth;
+          star.y = 0;
+        }
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    document.getElementById("star-music-btn").addEventListener("click", () => {
+      const music = document.getElementById("star-music");
+      if (music.paused) {
+        music.play();
+        document.getElementById("star-music-btn").textContent = "⏸ Pause Star Music";
+      } else {
+        music.pause();
+        document.getElementById("star-music-btn").textContent = "🎵 Play Star Music";
+      }
+    });
+  </script>
+</body>
+</html>

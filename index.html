@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    
+    <canvas id="confetti-canvas"></canvas>
+
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Floating Balloons -->
+    <div class="balloons"></div>
+
+    <!-- Cake Section -->
+    <section class="cake-section">
+        <div class="cake">
+            <div class="candles">
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+
+            <div class="cake-top"></div>
+            <div class="cake-base"></div>
+        </div>
+        <button class="blow-btn" onclick="blowCandles()">Blow Candles 🎂</button>
+        <div class="birthday-message">Happy Birthday!🎉</div>
+    </section>
+
+    <!-- Memories Section (Initially Hidden) -->
+    <audio id="birthday-music" loop>
+        <source src="song.mp3" type="audio/mpeg" />
+    </audio>
+    <section class="memories hidden-section">
+        <h2 class="message">You're Amazing! 💖</h2>
+        <img src="d8.jpg" class="photo" alt="Memory 1" />
+        <div class="message">Wishing you endless joy and success! 🌟</div>
+        <img src="d4.jpg" class="photo" alt="Memory 2" />
+        <div class="message">You make the world brighter! ✨</div>
+        <img src="d11.jpg" class="photo" alt="Memory 3" />
+        <div class="message">Stay awesome always! 😎</div>
+        <img src="d6.jpg" class="photo" alt="Memory 4" />
+    </section>
+    
+    <section class="wish-wall hidden-section">
+        <h2 class="section-title">🌈 Wish Wall</h2>
+        <form id="wish-form">
+          <input type="text" id="wish-input" placeholder="Write your birthday wish..." required />
+          <button type="submit">Pin Wish</button>
+        </form>
+        <div class="wish-board" id="wish-board"></div>
+      </section>
+      
+    <section class="image-marquee-section hidden-section">
+        <div class="image-marquee-wrapper">
+          <div class="image-marquee-track">
+            <img src="d1.jpg" class="marquee-img" />
+            <img src="d2.jpg" class="marquee-img" />
+            <img src="d3.jpg" class="marquee-img" />
+            <img src="d4.jpg" class="marquee-img" />
+            <img src="d5.jpg" class="marquee-img" />
+            <img src="d6.jpg" class="marquee-img" />
+            <!-- Loop again for continuous effect -->
+            <img src="d7.jpg" class="marquee-img" />
+            <img src="d8.jpg" class="marquee-img" />
+            <img src="d9.jpg" class="marquee-img" />
+            <img src="d10.jpg" class="marquee-img" />
+            <img src="d11.jpg" class="marquee-img" />
+            <img src="d12.jpg" class="marquee-img" />
+            <img src="d13.jpg" class="marquee-img" />
+          </div>
+        </div>
+      </section>
+      
+      <section class="memory-jar-section hidden-section">
+        <h2 class="section-title">💌 Memory Jar</h2>
+        <div class="memory-jar">
+          <div class="memory-note" onclick="revealNote(this)">
+            <div class="note-inner">
+              <div class="note-front">Click to reveal</div>
+              <div class="note-back"></div>
+            </div>
+          </div>
+          <!-- Repeat for more notes -->
+          <div class="memory-note" onclick="revealNote(this)">
+            <div class="note-inner">
+              <div class="note-front">Click to reveal</div>
+              <div class="note-back"></div>
+            </div>
+          </div>
+          <div class="memory-note" onclick="revealNote(this)">
+            <div class="note-inner">
+              <div class="note-front">Click to reveal</div>
+              <div class="note-back"></div>
+            </div>
+          </div>
+          <div class="memory-note" onclick="revealNote(this)">
+            <div class="note-inner">
+              <div class="note-front">Click to reveal</div>
+              <div class="note-back"></div>
+            </div>
+          </div>
+          <div class="memory-note" onclick="revealNote(this)">
+            <div class="note-inner">
+              <div class="note-front">Click to reveal</div>
+              <div class="note-back"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+
+    <!-- Music Button (Initially Hidden) -->
+    <section class="music-control hidden-section">
+        <button class="music-btn" id="music-btn">🎵 Play Music</button>
+    </section>
+
+    <!-- Quotes Section (Initially Hidden) -->
+    <section class="quotes-section hidden-section">
+        <div class="quote-container">
+            <div class="quote active">"Wishing you a day filled with love and laughter!"</div>
+            <div class="quote">"May your year be as amazing as you are!"</div>
+            <div class="quote">"Another year older, another year wiser – Happy Birthday!"</div>
+            <div class="quote">"Keep shining and smiling, it suits you perfectly!"</div>
+        </div>
+        <button class="quotes-btn" onclick="nextQuote()">Next ➔</button>
+    </section>
+
+    <!-- Music -->
+  
+    <section class="stars-launch hidden-section">
+        <button class="stars-page-btn" onclick="window.location.href='stars.html'">
+          ✨ Go to Starry Night
+        </button>
+      </section>
+      
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    
+      
+</body>
+
+</html>
